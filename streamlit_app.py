@@ -2,13 +2,13 @@ import streamlit as st
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableBranch, RunnablePassthrough
-from zhipuai_embedding import ZhipuAIEmbeddings
 from langchain_community.vectorstores import Chroma
-from zhipuai_llm import ZhipuaiLLM
 from dotenv import load_dotenv, find_dotenv
+from zhipuai_embedding import ZhipuAIEmbeddings
+from zhipuai_llm import ZhipuaiLLM
 import os
 import sys
-sys.path.append("./notebook/C3 搭建知识库") # 将父目录放入系统路径中
+sys.path.append("../notebook/C3 搭建知识库") # 将父目录放入系统路径中
 
 _ = load_dotenv(find_dotenv())
 api_key = os.getenv('ZHIPUAI_API_KEY')
@@ -21,7 +21,7 @@ def get_retriever():
     # 定义 Embeddings
     embedding = ZhipuAIEmbeddings()
     # 向量数据库持久化路径
-    persist_directory = './data_base/vector_db/chroma'
+    persist_directory = '../data_base/vector_db/chroma'
     # 加载数据库
     vectordb = Chroma(
         persist_directory=persist_directory,
@@ -121,3 +121,6 @@ def main():
             output = st.write_stream(answer)
         # 将输出存入st.session_state.messages
         st.session_state.messages.append(("ai", output))
+
+if __name__ == '__main__':
+    main()
