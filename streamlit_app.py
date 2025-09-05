@@ -14,8 +14,10 @@ _ = load_dotenv(find_dotenv())
 api_key = os.getenv('ZHIPUAI_API_KEY')
 print(f"ZHIPUAI_API_KEY= {api_key}")
 
-# streamlit搭建应用程序
 
+# 运行方式 streamlit run streamlit_app.py，会打开网页，点deploy，将该代码的git仓库链接填入
+
+# streamlit搭建应用程序
 def get_retriever():
     # 返回一个检索器
     # 定义 Embeddings
